@@ -6,7 +6,6 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
-import java.time.LocalDate;
 
 @Entity
 public class Pedido {
@@ -16,7 +15,6 @@ public class Pedido {
     private Long id;
 
     private Double total;
-    private LocalDate fecha;
 
     @ManyToOne
     @JoinColumn(name = "id_cliente", nullable = false)
@@ -30,9 +28,8 @@ public class Pedido {
     public Pedido() {}
 
     // Constructor con parámetros
-    public Pedido(Double total, LocalDate fecha, Cliente cliente, Comercial comercial) {
+    public Pedido(Double total, Cliente cliente, Comercial comercial) {
         this.total = total;
-        this.fecha = fecha;
         this.cliente = cliente;
         this.comercial = comercial;
     }
@@ -54,14 +51,6 @@ public class Pedido {
         this.total = total;
     }
 
-    public LocalDate getFecha() {
-        return fecha;
-    }
-
-    public void setFecha(LocalDate fecha) {
-        this.fecha = fecha;
-    }
-
     public Cliente getCliente() {
         return cliente;
     }
@@ -77,4 +66,5 @@ public class Pedido {
     public void setComercial(Comercial comercial) {
         this.comercial = comercial;
     }
+    
 }
