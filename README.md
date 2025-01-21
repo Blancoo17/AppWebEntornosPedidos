@@ -22,3 +22,7 @@ Por ahora estoy lanzando el backend desde el Visual Studio Code, haciendo click 
 Tercer paso: Frontend básico
 
 Ya hay un frontend básico que permite ver el contenido de la tabla de clientes. El html se carga por defecto al entrar en la dirección "http:localhost:8080". De hecho, en el navegador se puede ver que la api ya responde en la direccion "http://localhost:8080/api/clientes" devolviendo en formato json todos los clientes de la tabla.
+
+Cuarto paso: Backend y frontend funcionales para lectura de datos y mostrarlos al usuario
+
+He tenido que rehacer la tabla de pedidos de la BBDD para quitar el campo "fecha" porque estaba dando muchos problemas a la hora de procesar su tipo de dato. Con SQLite ha habido que crear una nueva tabla sin ese campo, copiar el contenido de la tabla antigua a la nueva (menos ese campo), borrar la tabla antigua y renombrar la nueva como la antigua.  
