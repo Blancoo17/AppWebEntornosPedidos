@@ -19,6 +19,7 @@ public class ClienteController {
 
     @PostMapping
     public Cliente crearCliente(@RequestBody Cliente cliente) {
+        cliente.setId(null);
         return clienteRepository.save(cliente);
     }
 

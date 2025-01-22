@@ -22,17 +22,52 @@
             </li>
         </ul>
         <div class="tab-content mt-3">
+            <!-- Pestaña Clientes -->
             <div class="tab-pane fade show active" id="clientes">
-                <!-- Contenido de CRUD para Clientes -->
-                <div id="clientes-container"></div>
+                <h3>Clientes</h3>
+                <button class="btn btn-primary mt-3" onclick="mostrarFormularioCliente()">Añadir Cliente</button>
+                <div id="formulario-cliente" class="mt-3" style="display: none;">
+                    <input type="text" id="cliente-nombre" placeholder="Nombre" class="form-control mb-2">
+                    <input type="text" id="cliente-apellido1" placeholder="Apellido 1" class="form-control mb-2">
+                    <input type="text" id="cliente-apellido2" placeholder="Apellido 2" class="form-control mb-2">
+                    <input type="text" id="cliente-ciudad" placeholder="Ciudad" class="form-control mb-2">
+                    <input type="number" id="cliente-categoria" placeholder="Categoría" class="form-control mb-2">
+                    <button class="btn btn-success" onclick="crearCliente()">Guardar</button>
+                    <button class="btn btn-secondary" onclick="ocultarFormularioCliente()">Cancelar</button>
+                </div>
+                <div id="clientes-container" class="mt-3">
+                </div>
             </div>
+
+            <!-- Pestaña Comerciales -->
             <div class="tab-pane fade" id="comerciales">
-                <!-- Contenido de CRUD para Comerciales -->
-                <div id="comerciales-container"></div>
+                <h3>Comerciales</h3>
+                <button class="btn btn-primary mt-3" onclick="mostrarFormularioComercial()">Añadir Comercial</button>
+                <div id="formulario-comercial" class="mt-3" style="display: none;">
+                    <input type="text" id="comercial-nombre" placeholder="Nombre" class="form-control mb-2">
+                    <input type="text" id="comercial-apellido1" placeholder="Apellido 1" class="form-control mb-2">
+                    <input type="text" id="comercial-apellido2" placeholder="Apellido 2" class="form-control mb-2">
+                    <input type="number" id="comercial-comision" placeholder="Comisión" class="form-control mb-2">
+                    <button class="btn btn-success" onclick="crearComercial()">Guardar</button>
+                    <button class="btn btn-secondary" onclick="ocultarFormularioComercial()">Cancelar</button>
+                </div>
+                <div id="comerciales-container" class="mt-3">
+                </div>
             </div>
+
+            <!-- Pestaña Pedidos -->
             <div class="tab-pane fade" id="pedidos">
-                <!-- Contenido de CRUD para Pedidos -->
-                <div id="pedidos-container"></div>
+                <h3>Pedidos</h3>
+                <button class="btn btn-primary mt-3" onclick="mostrarFormularioPedido()">Añadir Pedido</button>
+                <div id="formulario-pedido" class="mt-3" style="display: none;">
+                    <input type="number" id="pedido-total" placeholder="Total" class="form-control mb-2">
+                    <input type="number" id="pedido-cliente-id" placeholder="ID del Cliente" class="form-control mb-2">
+                    <input type="number" id="pedido-comercial-id" placeholder="ID del Comercial" class="form-control mb-2">
+                    <button class="btn btn-success" onclick="crearPedido()">Guardar</button>
+                    <button class="btn btn-secondary" onclick="ocultarFormularioPedido()">Cancelar</button>
+                </div>
+                <div id="pedidos-container" class="mt-3">
+                </div>
             </div>
         </div>
     </div>

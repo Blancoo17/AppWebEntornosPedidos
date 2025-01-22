@@ -31,6 +31,7 @@ public class PedidoController {
     // Crear un nuevo pedido
     @PostMapping
     public Pedido createPedido(@RequestBody Pedido pedido) {
+        pedido.setId(null);
         return pedidoRepository.save(pedido);
     }
 
