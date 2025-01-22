@@ -29,4 +29,12 @@ He tenido que rehacer la tabla de pedidos de la BBDD para quitar el campo "fecha
 
 Tras incluir un nuevo fichero de bootstrap ya he conseguido que funcione la navegación entre pestañas y que muestre el contenido de las 3 tablas, con los que la parte de READ del CRUD ya está hecha. Voy a etiquetar este hito como la versión 0.1
 
+- Quinto paso: Añadir funciones adicionales de CRUD
+
+He ido añadiendo tags conforme avanzaba desarrollando diversas funcionalidades para el proyecto: borrar elementos, editar elementos y crear elementos. Cada una de ellas es la versión 0.2, 0.3 y 0.4. 
+
+También he añadido un script para crear la BBDD desde cero si hace falta y he restaurado el contenido de la propia BBDD.
+
+Por ahora, para ejecutar la aplicación hay que clonar el proyecto y lanzar el fichero "TiendawebappApplication.java", situado en "tiendawebapp/src/main/java/com/oriana/tienda/tiendawebapp", desde un IDE como Visual Studio Code. Una vez hecho esto se podrá acceder a la aplicación en un navegador, en la URL "http://localhost:8080"
+
 
