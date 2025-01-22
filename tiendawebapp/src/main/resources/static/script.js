@@ -24,6 +24,9 @@ async function cargarClientes() {
                         <td>${cliente.nombre}</td>
                         <td>${cliente.apellido1}</td>
                         <td>${cliente.ciudad}</td>                        
+                        <td>
+                            <button onclick="eliminarCliente(${cliente.id})" class="btn btn-danger btn-sm">Eliminar</button>
+                        </td>
                     </tr>
                 `).join('')}
             </tbody>
@@ -54,7 +57,10 @@ async function cargarComerciales() {
                         <td>${comercial.nombre}</td>
                         <td>${comercial.apellido1}</td>
                         <td>${comercial.apellido2 || ''}</td>
-                        <td>${comercial.comision}</td>                    
+                        <td>${comercial.comision}</td>   
+                        <td>
+                            <button onclick="eliminarComercial(${comercial.id})" class="btn btn-danger btn-sm">Eliminar</button>
+                        </td>                 
                     </tr>
                 `).join('')}
             </tbody>
@@ -82,13 +88,31 @@ async function cargarPedidos() {
                     <tr>
                         <td>${pedido.id}</td>
                         <td>${pedido.total}</td>
-                        <td>${pedido.cliente.nombre} ${pedido.cliente.apellido1}</td>
-                        <td>${pedido.comercial.nombre} ${pedido.comercial.apellido1}</td>
+                        <td>${pedido.cliente != null ? pedido.cliente.nombre : ''} ${pedido.cliente != null ? pedido.cliente.apellido1 : ''}</td>
+                        <td>${pedido.comercial != null ? pedido.comercial.nombre: ''} ${pedido.comercial != null ? pedido.comercial.apellido1: ''}</td>
+                        <td>
+                            <button onclick="eliminarPedido(${pedido.id})" class="btn btn-danger btn-sm">Eliminar</button>
+                        </td>
                     </tr>
                 `).join('')}
             </tbody>
         </table>
     `;
+}
+
+async function eliminarCliente(id) {
+    await fetch(`${apiUrlClientes}/${id}`, { method: 'DELETE' });
+    cargarClientes();
+}
+
+async function eliminarComercial(id) {
+    await fetch(`${apiUrlComerciales}/${id}`, { method: 'DELETE' });
+    cargarComerciales();
+}
+
+async function eliminarPedido(id) {
+    await fetch(`${apiUrlPedidos}/${id}`, { method: 'DELETE' });
+    cargarPedidos();
 }
 
 cargarClientes();
