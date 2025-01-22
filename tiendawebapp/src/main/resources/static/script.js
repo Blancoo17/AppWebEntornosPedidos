@@ -28,7 +28,7 @@ function obtenerValoresEditados(fila) {
 async function cargarClientes() {
     const response = await fetch(apiUrlClientes);
     const clientes = await response.json();
-    const container = document.getElementById('clientes');
+    const container = document.getElementById('clientes-container'); // Cambiado para que solo afecte la tabla
     container.innerHTML = `
         <table class="table">
             <thead>
@@ -100,7 +100,7 @@ async function guardarClienteEditado(id, fila) {
 async function cargarComerciales() {
     const response = await fetch(apiUrlComerciales);
     const comerciales = await response.json();
-    const container = document.getElementById('comerciales');
+    const container = document.getElementById('comerciales-container');
     container.innerHTML = `
         <table class="table">
             <thead>
@@ -169,7 +169,7 @@ async function guardarComercialEditado(id, fila) {
 async function cargarPedidos() {
     const response = await fetch(apiUrlPedidos);
     const pedidos = await response.json();
-    const container = document.getElementById('pedidos');
+    const container = document.getElementById('pedidos-container');
     container.innerHTML = `
         <table class="table">
             <thead>
@@ -257,6 +257,104 @@ async function eliminarComercial(id) {
 async function eliminarPedido(id) {
     await fetch(`${apiUrlPedidos}/${id}`, { method: 'DELETE' });
     cargarPedidos();
+}
+
+// Mostrar y ocultar formularios
+function mostrarFormularioCliente() {
+    document.getElementById('formulario-cliente').style.display = 'block';
+}
+
+function ocultarFormularioCliente() {
+    document.getElementById('formulario-cliente').style.display = 'none';
+}
+
+function mostrarFormularioComercial() {
+    document.getElementById('formulario-comercial').style.display = 'block';
+}
+
+function ocultarFormularioComercial() {
+    document.getElementById('formulario-comercial').style.display = 'none';
+}
+
+function mostrarFormularioPedido() {
+    document.getElementById('formulario-pedido').style.display = 'block';
+}
+
+function ocultarFormularioPedido() {
+    document.getElementById('formulario-pedido').style.display = 'none';
+}
+
+// Funciones para crear elementos
+async function crearCliente() {
+    const cliente = {
+        nombre: document.getElementById('cliente-nombre').value.trim(),
+        apellido1: document.getElementById('cliente-apellido1').value.trim(),
+        apellido2: document.getElementById('cliente-apellido2').value.trim(),
+        ciudad: document.getElementById('cliente-ciudad').value.trim(),
+        categoria: parseInt(document.getElementById('cliente-categoria').value.trim())
+    };
+
+    const response = await fetch(apiUrlClientes, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(cliente)
+    });
+
+    if (response.ok) {
+        alert('Cliente creado con éxito');
+        cargarClientes();
+    } else {
+        alert('Error al crear el cliente');
+    }
+
+    ocultarFormularioCliente();
+}
+
+async function crearComercial() {
+    const comercial = {
+        nombre: document.getElementById('comercial-nombre').value.trim(),
+        apellido1: document.getElementById('comercial-apellido1').value.trim(),
+        apellido2: document.getElementById('comercial-apellido2').value.trim(),
+        comision: parseFloat(document.getElementById('comercial-comision').value.trim())
+    };
+
+    const response = await fetch(apiUrlComerciales, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(comercial)
+    });
+
+    if (response.ok) {
+        alert('Comercial creado con éxito');
+        cargarComerciales();
+    } else {
+        alert('Error al crear el comercial');
+    }
+
+    ocultarFormularioComercial();
+}
+
+async function crearPedido() {
+    const pedido = {
+        total: parseFloat(document.getElementById('pedido-total').value.trim()),
+        cliente: { id: parseInt(document.getElementById('pedido-id-cliente').value.trim()) },
+        comercial: { id: parseInt(document.getElementById('pedido-id-comercial').value.trim()) }
+    };
+
+    const response = await fetch(apiUrlPedidos, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(pedido)
+    });
+
+    if (response.ok) {
+        alert('Pedido creado con éxito');
+        cargarPedidos();
+    } else {
+        alert('Error al crear el pedido');
+    }
+
+    ocultarFormularioPedido();
 }
 
 cargarClientes();

@@ -31,6 +31,7 @@ public class ComercialController {
     // Crear un nuevo comercial
     @PostMapping
     public Comercial createComercial(@RequestBody Comercial comercial) {
+        comercial.setId(null);
         return comercialRepository.save(comercial);
     }
 
